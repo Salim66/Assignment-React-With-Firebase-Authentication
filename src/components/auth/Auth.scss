@@ -1,0 +1,202 @@
+.auth__section {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(33, 42, 57, .9) 0%, rgba(58, 122, 115, 1) 60%);
+    overflow: hidden;
+}
+
+.container__row {
+    margin-top: 120px;
+    margin-left: 120px;
+}
+
+.card {
+    background-color: #474F5A;
+    border-radius: 8px;
+}
+
+.nav-item .tab__title {
+    color: #737a83;
+    
+     
+    &:hover {
+        color: #d5dbe4;
+        text-decoration-color: rgba(58, 122, 115, 1) !important;
+        text-decoration-line: underline;
+        text-decoration-thickness: 2px;
+    }
+}
+
+.nav-item .active {
+    color: #d5dbe4;
+    text-decoration-color: rgba(58, 122, 115, 1) !important;
+    text-decoration-line: underline;
+        text-decoration-thickness: 2px;
+}
+
+.form-control {
+    background: none !important;
+    border: none !important;
+    border-bottom: 1px solid #737a83 !important;
+    padding-left: 0px;
+    border-radius: 0px !important;
+    color: #333;
+}
+
+.form-control:focus {
+    color: #333 !important;
+    background-color: none !important;
+    border-color: none !important;
+    outline: 0;
+    box-shadow: none;
+}
+
+.remember_me {
+    margin-top: 10px;
+    color: #737a83;
+}
+
+.main {
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+  
+/* Hide the default checkbox */
+input[type=checkbox] {
+    visibility: hidden;
+}
+  
+/* Creating a custom checkbox
+based on demand */
+.geekmark {
+    position: absolute;
+    top: 191px;
+    left: 43px;
+    height: 14px;
+    width: 14px;
+    background-color: #737a83;
+}
+  
+/* Specify the background color to be
+shown when hovering over checkbox */
+.remember_me:hover input ~ .geekmark {
+    background-color: #737a83;
+}
+  
+/* Specify the background color to be
+shown when checkbox is active */
+.remember_me input:active ~ .geekmark {
+    background-color: #737a83;
+}
+  
+/* Specify the background color to be
+shown when checkbox is checked */
+.remember_me input:checked ~ .geekmark {
+    background-color: #737a83;
+}
+  
+/* Checkmark to be shown in checkbox */
+/* It is not be shown when not checked */
+.geekmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+/* Display checkmark when checked */
+.remember_me input:checked ~ .geekmark:after {
+    display: block;
+}
+  
+.remember_me .geekmark:after {
+    left: 7px;
+    bottom: 5px;
+    width: 6px;
+    height: 12px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.login__btn {
+    width: 90px;
+    height: 24px;
+    font-size: 12px;
+    border-radius: 50px;
+    line-height: 22px;
+    border: none;
+    background: #55C8BA;
+    color: #FFF;
+    transition: .2s all;
+}
+
+.login__btn:hover {
+    background: #38d1bf;
+}
+
+.forget {
+    padding-bottom: 60px;
+}
+
+.forget__pass {
+    margin-bottom: 20px;
+}
+
+.forget__pass i {
+    font-size: 10px;
+    color: #737a83;
+}
+
+.forget__pass span {
+    font-size: 12px;
+    color: #FFF;
+    opacity: .8;
+}
+
+.sign__up {
+    margin-bottom: 88px !important;
+}
+
+.modal-sm {
+    max-width: 307px !important;
+}
+
+.modal-dialog {
+    max-width: 511px;
+    margin: 10.75rem 16.4rem !important;
+}
+
+.recovey__btn {
+    width: 90px;
+    height: 24px;
+    font-size: 12px;
+    line-height: 22px;
+    border: none;
+    background: #55C8BA;
+    color: #FFF;
+    transition: .2s all;
+}
+
+.recovey__password {
+    opacity: .7;
+}
+
+.recovey__text-one,
+.recovery__text-two {
+    font-size: 11px;
+    opacity: .7;
+}
+
+.recovey {
+    margin-bottom: 90px;
+}
+
+.modal-content {
+    border-radius: 0px !important;
+}
