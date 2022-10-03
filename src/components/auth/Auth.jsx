@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import './Auth.scss';
 import { app } from '../../firebase.js';
 import cogoToast from 'cogo-toast';
 import { useNavigate } from 'react-router-dom';
+import { async } from '@firebase/util';
  
 
 const Auth = ({ setAuthCheck }) => {
@@ -22,6 +23,10 @@ const Auth = ({ setAuthCheck }) => {
         password : ''
     });
 
+    const [reset, setReset] = useState({
+        email: ''
+    });
+
     const navigate = useNavigate();
 
     const handleRegisterForm = (e) => {
@@ -31,7 +36,11 @@ const Auth = ({ setAuthCheck }) => {
             cogoToast.warn('All fiedls are required!');
         }else {
 
-            createUserWithEmailAndPassword(auth, res.email, res.password)
+            createUserWithEmailAndPassword(auth, res.email, res.password).then(() => {
+                updateProfile(auth.currentUser, {
+                    displayName: res.username
+                });
+            })
             .then(useCredential => {
 
                 cogoToast.success('User Create Successfully');
@@ -71,6 +80,29 @@ const Auth = ({ setAuthCheck }) => {
             }).catch(error => {
 
                 cogoToast.error('Login Faield!');
+
+            });
+
+        }
+
+    }
+
+    const handleResetPassword = async (e) => {
+        e.preventDefault();
+
+        if(!reset.email){
+
+            cogoToast.warn('Email field is required!');
+
+        }else {
+
+            await sendPasswordResetEmail(auth, reset.email).then(userCredential => {
+
+                cogoToast.success('Password Reset Link Send Your Email, Please Check!');
+
+            }).catch(error => {
+
+                cogoToast.error('Reset Faield!');
 
             });
 
@@ -151,9 +183,9 @@ const Auth = ({ setAuthCheck }) => {
                         <h5 className='recovey__password'>Password Recovery</h5>
                         <p className='recovey__text-one'>Enter either the email address or username on the account and click Submit</p>
                         <p className="recovery__text-two">We'll email instructions on how to reset your password.</p>
-                        <form action="">
+                        <form onSubmit={ handleResetPassword }>
                             <div className="form-group">
-                                <input type="text" className='form-control' placeholder='Enter email or username here' />
+                                <input type="text" name='email' className='form-control' placeholder='Enter email or username here' value={reset.email} onChange={ e => setReset({ ...reset, email : e.target.value }) } />
                             </div>
                             <div className="form-group recovey">
                                 <button type='submit' className='recovey__btn'>Submit</button>
